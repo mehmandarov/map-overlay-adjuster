@@ -1,0 +1,47 @@
+html, body, #map-canvas {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+          }
+
+.overlay-info {
+	position: absolute; 
+	top: 10px; 
+	right: 10px; 
+	z-index: 99; 
+    width: 350px;
+ 	margin: auto;
+	overflow: hidden;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+	border-radius: 3px;
+	padding: 5px 10px;
+    background-color: #eee;
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-size: 11px;
+}
+
+.overlay-info h3 {
+    display: block;
+    line-height: 1.3;
+    width: 350px;
+    margin: 0;
+    padding: 5px 10px;
+    position: relative;
+    left: -10px;
+    top: -5px;
+    color: #cfcfcf;
+    text-shadow: 0 1px 1px #111;
+    border-top: 1px solid #363636;
+    border-bottom: 1px solid #202020;
+    background: #333;
+    background: linear-gradient(top, #383838 0%, #262626 100%);
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.overlay-info h4 {
+	line-height: 0.5;
+	font-size: 120%;
+}
