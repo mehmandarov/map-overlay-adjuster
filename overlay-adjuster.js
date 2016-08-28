@@ -24,11 +24,17 @@ this.myOverlayAdjusterTool  = this.myOverlayAdjusterTool || {};
 		showOverlayPointsInInfoOverlay(swBound, neBound);
 		showMapCenterPointInInfoOverlay(mapOptions.center);
 
-		//console.log(map);
 		var srcImage = overlayImage;
 
 		overlay = new DebugOverlay(bounds, srcImage, map);
-
+		
+		var markerOnClick = new google.maps.Marker({
+			draggable: true,
+			map: map,
+			animation: google.maps.Animation.DROP,
+			icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+		});
+		
 		var markerA = new google.maps.Marker({
 			position: swBound,
 			map: map,
@@ -39,6 +45,20 @@ this.myOverlayAdjusterTool  = this.myOverlayAdjusterTool || {};
 			position: neBound,
 			map: map,
 			draggable:true
+		});
+
+		google.maps.event.addListener(map, "click", function (event) {
+			var pointClicked = event.latLng;
+			console.log("Map point clicked: "+ pointClicked);
+			markerOnClick.setPosition(pointClicked);
+			showMapClickPointInInfoOverlay(pointClicked);
+		});
+
+		google.maps.event.addListener(markerOnClick, 'dragend', function () {
+			var pointClicked = markerOnClick.getPosition();
+			console.log("Map point clicked: "+ pointClicked);
+			showMapClickPointInInfoOverlay(pointClicked);
+
 		});
 
 		google.maps.event.addListener(markerA,'drag',function(){
@@ -58,8 +78,8 @@ this.myOverlayAdjusterTool  = this.myOverlayAdjusterTool || {};
 		google.maps.event.addListener(markerA, 'dragend', function () {
 			var newPointA = markerA.getPosition();
 			var newPointB = markerB.getPosition();
-			console.log("point1"+ newPointA);
-			console.log("point2"+ newPointB);
+			console.log("Overlay image south-west point: "+ newPointA);
+			console.log("Overlay image north-east point: "+ newPointB);
 			showOverlayPointsInInfoOverlay(newPointA, newPointB);
 
 		});
@@ -67,13 +87,13 @@ this.myOverlayAdjusterTool  = this.myOverlayAdjusterTool || {};
 		google.maps.event.addListener(markerB, 'dragend', function () {
 			var newPointA = markerA.getPosition();
 			var newPointB = markerB.getPosition();
-			console.log("point1"+ newPointA);
-			console.log("point2"+ newPointB);
+			console.log("Overlay image south-west point: "+ newPointA);
+			console.log("Overlay image north-east point: "+ newPointB);
 			showOverlayPointsInInfoOverlay(newPointA, newPointB);
 		});
-
+		
 	}
-
+	
 	function showOverlayPointsInInfoOverlay(point1, point2) {
 		document.getElementById("point1").innerText = point1;
 		document.getElementById("point2").innerText = point2;
@@ -82,11 +102,14 @@ this.myOverlayAdjusterTool  = this.myOverlayAdjusterTool || {};
 	function showMapCenterPointInInfoOverlay(centerPoint){
 		document.getElementById("centerPoint").innerText = centerPoint;
 	}
+	
+	function showMapClickPointInInfoOverlay(clickPoint){
+		document.getElementById("clickPoint").innerText = clickPoint;
+	}
 
 	function setMapCenter(lat, lon){
 		map.setCenter(new google.maps.LatLng(lat, lon));
 	}
-
 
 	function setZoom(zoom){
 		mapZoom = zoom;
