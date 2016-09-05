@@ -5,7 +5,7 @@ this.myOverlayAdjusterTool  = this.myOverlayAdjusterTool || {};
 	var overlay;
 	var map;
 	var mapZoom = 18;
-	var overlayImage = "https://github.com/javaBin/AndroiditoJZ/raw/405962e56a1c8e974ff120ec560cf72972bd1a38/android/src/main/res/drawable/level0.png";
+	var overlayImage = "https://github.com/javaBin/AndroiditoJZ/raw/master/android/src/main/res/drawable/oslospektrum_level0.png";
 
 	DebugOverlay.prototype = new google.maps.OverlayView();
 
@@ -17,8 +17,8 @@ this.myOverlayAdjusterTool  = this.myOverlayAdjusterTool || {};
 
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		
-		var swBound = new google.maps.LatLng(59.91248733954981, 10.753536779098567);
-		var neBound = new google.maps.LatLng(59.9135416490492, 10.755773347221407);
+		var swBound = new google.maps.LatLng(59.91245775721807, 10.753627974205074);
+		var neBound = new google.maps.LatLng(59.91353895983281, 10.755966466270479);
 		var bounds = new google.maps.LatLngBounds(swBound, neBound);
 
 		showOverlayPointsInInfoOverlay(swBound, neBound);
